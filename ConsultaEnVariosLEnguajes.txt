@@ -1,0 +1,147 @@
+preguntar al usuario su nombre y edad e imprimirlos en la consola
+creado por https://aicodeconvert.com/
+---------------------en TurboC 
+
+#include <stdio.h>
+
+int main() {
+    char name[50];
+    int age;
+
+    printf("Enter your name: ");
+    scanf("%s", name);
+
+    printf("Enter your age: ");
+    scanf("%d", &age);
+
+    printf("Name: %s\n", name);
+    printf("Age: %d\n", age);
+
+    return 0;
+}
+
+------------------------------------------------------
+----------------------en java
+
+import java.util.Scanner;
+
+public class PrintUserInfo {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Enter your name: ");
+        String name = scanner.nextLine();
+        
+        System.out.print("Enter your age: ");
+        int age = scanner.nextInt();
+        
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+        
+        scanner.close();
+    }
+}
+
+------------------------------------------
+---------EN JAVASCRIPT
+```javascript
+let userName = prompt("Enter your name:");
+let userAge = prompt("Enter your age:");
+
+console.log(`Name: ${userName}, Age: ${userAge}`);
+```
+----------------------------------------
+--------EN PERL
+```perl
+use strict;
+use warnings;
+
+print "Enter your name: ";
+my $name = <STDIN>;
+chomp $name;
+
+print "Enter your age: ";
+my $age = <STDIN>;
+chomp $age;
+
+print "Name: $name, Age: $age\n";
+```
+-----------------------------------------
+-----------------EN PHP
+<?php
+$name = readline("Enter your name: ");
+$age = readline("Enter your age: ");
+echo "Name: " . $name . "\n";
+echo "Age: " . $age . "\n";
+?>
+
+------EN ENSAMBLADODr
+
+section .data
+    prompt db 'Please enter your name and age:', 0
+    name db 50
+    age db 3
+    output db 'Name: ', 0
+    output_age db 'Age: ', 0
+    newline db 0xA, 0
+
+section .bss
+    name_input resb 50
+    age_input resb 3
+
+section .text
+    global _start
+
+_start:
+    ; Output prompt to enter name and age
+    mov eax, 4
+    mov ebx, 1
+    mov ecx, prompt
+    mov edx, 30
+    int 0x80
+
+    ; Read user input for name
+    mov eax, 3
+    mov ebx, 0
+    mov ecx, name_input
+    mov edx, 50
+    int 0x80
+
+    ; Read user input for age
+    mov eax, 3
+    mov ebx, 0
+    mov ecx, age_input
+    mov edx, 3
+    int 0x80
+
+    ; Output name
+    mov eax, 4
+    mov ebx, 1
+    mov ecx, output
+    mov edx, 6
+    int 0x80
+
+    mov eax, 4
+    mov ebx, 1
+    mov ecx, name_input
+    mov edx, 50
+    int 0x80
+
+    ; Output age
+    mov eax, 4
+    mov ebx, 1
+    mov ecx, output_age
+    mov edx, 5
+    int 0x80
+
+    mov eax, 4
+    mov ebx, 1
+    mov ecx, age_input
+    mov edx, 3
+    int 0x80
+
+    ; Exit program
+    mov eax, 1
+    xor ebx, ebx
+    int 0x80
+
